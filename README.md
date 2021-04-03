@@ -10,4 +10,8 @@ InfluxDB Cloud https://www.influxdata.com/products/influxdb-cloud/ provides a fr
 
 Configuration
 ==============
-The FarFlux Utility requires the configuration of the InfluxDB Instance name, the database bucket name and access Token for authentication.
+The FarFlux Utility requires the configuration from InfluxDB in order to write to the database:
+- InfluxDB URL (e.g. https://eu-central-1-1.aws.cloud2.influxdata.com)
+- OrganizationID (e.g. beacon_mon)
+- Bucket (e.g. faros_spots)
+- Token (authentication token)

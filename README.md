@@ -9,4 +9,4 @@ InfluxDB Cloud https://www.influxdata.com/products/influxdb-cloud/ provides a fr
 
 Configuration
 ==============
-The FarFlux Utility requires the configuration of the InfluxDB Instance name, the database bucket name and an access Token for authentication.
+The FarFlux Utility requires the configuration of the InfluxDB Instance name, the database bucket name and access Token for authentication.

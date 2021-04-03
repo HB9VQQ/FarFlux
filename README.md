@@ -4,6 +4,9 @@ FarFlux is a Windows utility which imports CW Beacon Logs from Faros http://www.
 
 InfluxDB Cloud https://www.influxdata.com/products/influxdb-cloud/ provides a free internet hosted database with data retention of 30 days and can be upgraded to (paid) unlimited data retention. InfluxDB is Open Source Software and can be installed on your own server as well (Linux,MacOS,Docker and Kubernetes) https://docs.influxdata.com/influxdb/v2.0/get-started/#manually-download-and-install
 
+![image](https://user-images.githubusercontent.com/75934980/113480467-a3da5e80-9494-11eb-9781-9fb9d28bc625.png)
+
+
 Configuration
 ==============
 The FarFlux Utility requires the configuration of the InfluxDB Instance name, the database bucket name and an access Token for authentication.

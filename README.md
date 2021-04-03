@@ -4,8 +4,8 @@ FarFlux is a Windows utility which imports CW Beacon Logs from Faros http://www.
 
 InfluxDB provides a <b>free</b> cloud-hosted database https://www.influxdata.com/products/influxdb-cloud/ with data retention of 30 days which can be upgraded to (paid) unlimited data retention at anytime. InfluxDB is Open Source Software and can be installed on your own server (self-hosted) on Linux, MacOS, Docker and Kubernetes https://docs.influxdata.com/influxdb/v2.0/get-started/#manually-download-and-install
 
-- If you use the free or subscription based cloud-hosted database provided by InfluxDB the default port is 443 (TLS enryption)
-- If you self-host the InfluxDB OSS the default port is 8086 (unencrypted)
+- If you use the free or subscription based cloud-hosted database provided by InfluxDB the default port is 443 (TLS encryption)
+- If you self-host the InfluxDB OSS the default port is 8086 (unencrypted or TLS encrypted)
 
 
 ![image](https://user-images.githubusercontent.com/75934980/113480671-db95d600-9495-11eb-97ee-800ca1ad2cf6.png)

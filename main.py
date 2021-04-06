@@ -1,7 +1,7 @@
 import tkinter as tk
-from tkinter import Toplevel, messagebox
+from tkinter import messagebox
 from tkinter.constants import DISABLED, E, N, NORMAL, S, TOP, VERTICAL, W
-from typing import Protocol
+
 from PIL import Image, ImageTk
 
 import json

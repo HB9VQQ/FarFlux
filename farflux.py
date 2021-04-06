@@ -1,6 +1,6 @@
 import os
 import glob
-from tkinter.constants import N
+
 from influxdb_client import InfluxDBClient
 from datetime import datetime, timezone, timedelta
 

@@ -2,7 +2,7 @@
 
 FarFlux is a Windows utility which imports CW Beacon Logs from Faros http://www.dxatlas.com/Faros/ and uploads the data to an InfluxDB https://www.influxdata.com/ for further processing by a observability tool like Grafana https://grafana.com/. The utility validates the Faros Beacon Logs and uploads only Beacon Spots where evidence >1. The FarFlux Program can be scheduled to run via the Windows Task Scheduler like every 15Mins.
 
-InfluxDB provides a <b>free</b> cloud-hosted database https://www.influxdata.com/products/influxdb-cloud/ with data retention of 30 days which can be upgraded to (paid) unlimited data retention at anytime. Alternatively InfluxDB OSS can be installed on your own server (self-hosted) on Linux, MacOS, Docker and Kubernetes https://docs.influxdata.com/influxdb/v2.0/get-started/#manually-download-and-install
+InfluxDB provides a <b>free</b> cloud-hosted database https://www.influxdata.com/products/influxdb-cloud/ with a data retention of 30 days which can be upgraded to (paid) unlimited data retention at anytime. Alternatively InfluxDB OSS can be installed on your own server (self-hosted) on Linux, MacOS, Docker and Kubernetes https://docs.influxdata.com/influxdb/v2.0/get-started/#manually-download-and-install
 
 - If you use the cloud-hosted database provided by InfluxDB (free or paid plan) the communication port is 443 (TLS encryption)
 - If you self-host the InfluxDB OSS the default communication port is 8086 (unencrypted or TLS encrypted)

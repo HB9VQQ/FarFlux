@@ -26,7 +26,7 @@ Then click on "Apply"
 
 Example Screenshot (cloud-hosted)
 -------------------
-![image](https://user-images.githubusercontent.com/75934980/113706800-63225580-96df-11eb-9f55-115f253d59b1.png)
+![image](https://user-images.githubusercontent.com/75934980/113779041-67755f80-972d-11eb-904d-4cf52ea0d918.png)
 
 ![image](https://user-images.githubusercontent.com/75934980/113707087-b1375900-96df-11eb-8e1b-792219e05323.png)
 

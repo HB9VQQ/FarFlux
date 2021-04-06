@@ -1,9 +1,10 @@
 import os
 import glob
+from tkinter.constants import N
 from influxdb_client import InfluxDBClient
 from datetime import datetime, timezone, timedelta
 
-from urllib3.exceptions import LocationValueError
+from urllib3.exceptions import LocationValueError, NewConnectionError
 from influxdb_client.rest import ApiException
 
 def connection_test(url, token, org_id, bucket):
@@ -22,37 +23,46 @@ def connection_test(url, token, org_id, bucket):
         buckets = client.buckets_api().find_buckets()
     except ApiException:
         status = 0
-        message = 'Connection to host not authorized.\nCheck token permissions.'
+        message = 'Connection to host not authorized.\n\nCheck token permissions or protocol.'
         return (status, message)
     except LocationValueError:
         status = 0
-        message = 'Couldn\'t establish connection to host.\nCheck InfluxDB URL.'
+        message = 'Couldn\'t establish connection to host.\n\nCheck InfluxDB URL.'
+        return (status, message)
+    except NewConnectionError:
+        status = 0
+        message = 'Couldn\'t establish connection to host.\n\nCheck InfluxDB URL or network connection.'
         return (status, message)
     bucket_names = []
     for b in buckets.buckets:
         bucket_names.append(b.name)
     org_names = []
+    org_ids = []
     for o in organizations:
         org_names.append(o.name)
+        org_ids.append(o.id)
     bucket_ok = True if bucket in bucket_names else False
-    org_ok = True if org_id in org_names else False
+    if org_id in org_names or org_id in org_ids:
+        org_ok = True 
+    else:
+        org_ok = False
     if bucket_ok and org_ok:
         status = 1
         message = 'Successful'
     elif bucket_ok == True and org_ok == False:
         status = 2
-        message = f'OrganizationID not found.\nAvailable OrganizationIDs: {org_names}'
+        message = f'Organization not found!\n\nAvailable organizations:\n\tOrgID: {org_ids}\n\tOrgName: {org_names}'
     elif bucket_ok == False and org_ok == True:
         status = 3
-        message = f'Bucket not found.\nAvailable Buckets: {bucket_names}'
+        message = f'Bucket not found!\n\nAvailable Buckets:\n\t{bucket_names}'
     else:
         status = 4
-        message = f'OrganizationID & Bucket not found.\nAvailable OrganizationIDs: {org_names}\nAvailable Buckets: {bucket_names}'
+        message = f'Organization & bucket not found!\n\nAvailable organizations:\n\tOrgID: {org_ids}\n\tOrgName: {org_names}\n\nAvailable buckets:\n\t{bucket_names}'
     return (status, message)
 
 def schedule_task():
     ''''''
-    a = 1
+    a = 1 # ceb219edc6b94917
 
 def init_db(URL, TOKEN, BUCKET, ORG):
     client = InfluxDBClient(url=URL, token=TOKEN, bucket=BUCKET, org=ORG)

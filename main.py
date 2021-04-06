@@ -1,10 +1,13 @@
 import tkinter as tk
-from tkinter import messagebox
-from tkinter.constants import DISABLED, E, N, NORMAL, S, VERTICAL, W
+from tkinter import Toplevel, messagebox
+from tkinter.constants import DISABLED, E, N, NORMAL, S, TOP, VERTICAL, W
+from typing import Protocol
+from PIL import Image, ImageTk
 
 import json
 import os
 import sys
+import webbrowser
 
 from farflux import connection_test, schedule_task
 
@@ -42,6 +45,8 @@ class App(tk.Tk):
     def show_frame(self, controller):
         '''frame controller'''
         frame = self.frames[controller]
+        if controller.__name__ == 'Landing':
+            frame.refresh()
         frame.tkraise()
 
 #   *****   PAGES   *****
@@ -53,8 +58,8 @@ class Landing(tk.Frame):
         self.get_values()
 
         #   *****   WIDGETS   *****
-        label = tk.Label(self, text="FarFlux Status")
-        label.pack(pady=15)
+        label = tk.Label(self, text="Status", font='Verdana 10 bold')
+        label.pack(pady=5)
 
         status_frame = tk.Frame(self, bg='#FFFFFF')
         status_frame.pack()
@@ -77,18 +82,18 @@ class Landing(tk.Frame):
         refresh_btn.grid(row=1, rowspan=2, column=2, padx=20)
 
         info_frame = tk.Frame(self)
-        info_frame.pack(pady=10)
+        info_frame.pack(pady=14)
 
         scrollbar = tk.Scrollbar(info_frame, orient=VERTICAL)
         scrollbar.grid(row=0, column=1, sticky=N+S+E)
-        self.info_text = tk.Text(info_frame, width=65, height=6, yscrollcommand=scrollbar.set)
+        self.info_text = tk.Text(info_frame, width=65, height=8, yscrollcommand=scrollbar.set)
         scrollbar.configure(command=self.info_text.yview)
         self.info_text.insert(1.0, f'{self.status_message}')
         self.info_text.grid(row=0, column=0)
 
         self.schedule_button = tk.Button(info_frame, text='Schedule\nUpload Task', 
                                     command=self.schedule, width=20, state=self.status)
-        self.schedule_button.grid(row=1, column=0, pady=10)
+        self.schedule_button.grid(row=1, column=0, pady=14)
 
     #   *****   COMMAND FUNCTIONS   *****
     def check_db(self):
@@ -96,14 +101,16 @@ class Landing(tk.Frame):
         if os.path.exists(CONFIG_FILE):
             with open(CONFIG_FILE) as json_file:
                 self.config = json.load(json_file)
-            self.url = self.config['URL']
-            self.org_id = self.config['ORG_ID']
-            self.bucket = self.config['BUCKET']
-            self.token = self.config['TOKEN']
-            self.db_connection = connection_test(url=self.url, 
-                                                 org_id=self.org_id, 
-                                                 bucket=self.bucket, 
-                                                 token=self.token)
+            protocol = self.config['PROTOCOL']
+            _url = self.config['URL']
+            url = _url if _url[:4] == 'http' else protocol+_url
+            org_id = self.config['ORG_ID']
+            bucket = self.config['BUCKET']
+            token = self.config['TOKEN']
+            self.db_connection = connection_test(url=url,
+                                            org_id=org_id,
+                                            bucket=bucket,
+                                            token=token)
         else:
             self.db_connection = (-1, 'Please provide InfluxDB settings:\nFile > Settings')
         return self.db_connection
@@ -126,7 +133,7 @@ class Landing(tk.Frame):
         db_status = self.db_connection[0]
         db_message = self.db_connection[1]
         
-        info_logs = f'Beacon logs directory not found:\n{self.logs_path}'
+        info_logs = f'Directory not present:\n{self.logs_path}'
 
         if self.logs_available == False and db_status == 1:
             self.status = DISABLED
@@ -157,41 +164,60 @@ class Settings(tk.Frame):
         self.bucket_input = tk.StringVar()
         self.token_input = tk.StringVar()
         self.port_input = tk.IntVar()
-        self.port_input.set(433)
+        self.port_input.set(443)
         self.port_state = tk.IntVar()
         self.port_state.set(0)
+        self.protocol_state = tk.StringVar()
+        self.protocol_state.set('https://')
 
-        label = tk.Label(self, text="InfluxDB Settings")
-        label.pack(pady=10)
+        label = tk.Label(self)
+        label.pack(pady=2)
 
         inner_frame = tk.Frame(self)
         inner_frame.pack()
 
+        protocol_label = tk.Label(inner_frame, text="Protocol:", width=15, anchor=W) 
+        protocol_label.grid(row=0, column=0, pady=8)
+
+        protocol_frame = tk.Frame(inner_frame)
+        protocol_frame.grid(row=0, column=1, pady=8)
+
+        self.https_radio_btn = tk.Radiobutton(protocol_frame, text='https://', 
+                                              variable=self.protocol_state,
+                                              value='https://')
+        self.https_radio_btn.grid(row=0, column=0, padx=3, sticky=E)
+        self.http_radio_btn = tk.Radiobutton(protocol_frame, text='http://', 
+                                              variable=self.protocol_state,
+                                              value='http://')
+        self.http_radio_btn.grid(row=0, column=1, padx=3, sticky=E)
+        self.https_radio_btn.select()
+        self.http_radio_btn.deselect()
+        
         url_label = tk.Label(inner_frame, text="InfluxDB URL:", width=15, anchor=W) 
-        url_label.grid(row=1, column=0, pady=10)
+        url_label.grid(row=1, column=0, pady=8)
         self.url_entry = tk.Entry(inner_frame, width=70, textvariable=self.url_input)
-        self.url_entry.grid(row=1,column=1, pady=10, columnspan=6)
+        self.url_entry.grid(row=1,column=1, pady=8, columnspan=6)
         
         org_label = tk.Label(inner_frame, text="OrganizationID:", width=15, anchor=W)
-        org_label.grid(row=2, column=0, pady=10)
+        org_label.grid(row=2, column=0, pady=8)
         self.org_entry = tk.Entry(inner_frame, width=70, textvariable=self.org_input)
-        self.org_entry.grid(row=2,column=1, pady=10, columnspan=6)
+        self.org_entry.grid(row=2,column=1, pady=8, columnspan=6)
 
         bucket_label = tk.Label(inner_frame, text="Bucket:", width=15, anchor=W)
-        bucket_label.grid(row=3, column=0, pady=10)
+        bucket_label.grid(row=3, column=0, pady=8)
         self.bucket_entry = tk.Entry(inner_frame, width=70, textvariable=self.bucket_input)
-        self.bucket_entry.grid(row=3,column=1, pady=10, columnspan=6)
+        self.bucket_entry.grid(row=3,column=1, pady=8, columnspan=6)
         
         token_label = tk.Label(inner_frame, text="Token:", width=15, anchor=W)
-        token_label.grid(row=4, column=0, pady=10)
+        token_label.grid(row=4, column=0, pady=8)
         self.token_entry = tk.Entry(inner_frame, width=70, textvariable=self.token_input)
-        self.token_entry.grid(row=4,column=1, pady=10, columnspan=6)
+        self.token_entry.grid(row=4,column=1, pady=8, columnspan=6)
 
         self.port_check_btn = tk.Checkbutton(inner_frame, text="   Port:", width=12, anchor=W, 
                                              command=self.port_select, variable=self.port_state)
-        self.port_check_btn.grid(row=5, column=0, pady=10)
+        self.port_check_btn.grid(row=5, column=0, pady=8)
         self.port_entry = tk.Entry(inner_frame, state=DISABLED, width=70, textvariable=self.port_input)
-        self.port_entry.grid(row=5,column=1, pady=10, columnspan=6)
+        self.port_entry.grid(row=5,column=1, pady=8, columnspan=6)
 
         if os.path.exists(CONFIG_FILE):
             with open(CONFIG_FILE) as json_file:
@@ -200,7 +226,7 @@ class Settings(tk.Frame):
             self.org_entry.insert(0, self.config["ORG_ID"])
             self.bucket_entry.insert(0, self.config["BUCKET"])
             self.token_entry.insert(0, self.config["TOKEN"])
-            if self.config["PORT"] == 433:
+            if self.config["PORT"] == 443:
                 self.port_input.set(self.config["PORT"])
                 self.port_entry.configure(state=DISABLED)
                 self.port_check_btn.deselect()
@@ -208,6 +234,14 @@ class Settings(tk.Frame):
                 self.port_input.set(self.config["PORT"])
                 self.port_entry.configure(state=NORMAL)
                 self.port_check_btn.select()
+            if self.config["PROTOCOL"] == 'https://':
+                self.protocol_state.set('https://')
+                self.https_radio_btn.select()
+                self.http_radio_btn.deselect()
+            else:
+                self.protocol_state.set('http://')
+                self.https_radio_btn.deselect()
+                self.http_radio_btn.select()
                
         self.apply_btn = tk.Button(inner_frame, text="Apply", command=lambda: self.apply(controller), 
                               width=15, state=DISABLED)
@@ -226,7 +260,7 @@ class Settings(tk.Frame):
                 self.port_input.set(8086)
             self.port_entry.configure(state=NORMAL)
         else:
-            self.port_input.set(433)
+            self.port_input.set(443)
             self.port_entry.configure(state=DISABLED)
 
     def refresh_apply(self):
@@ -247,7 +281,8 @@ class Settings(tk.Frame):
             "ORG_ID": self.org_input.get(),
             "BUCKET": self.bucket_input.get(),
             "TOKEN": self.token_input.get(),
-            "PORT": self.port_input.get()
+            "PORT": self.port_input.get(),
+            "PROTOCOL": self.protocol_state.get()
         }
         with open(CONFIG_FILE, 'w') as f:
             json.dump(config, f, indent=4)
@@ -262,30 +297,56 @@ class Settings(tk.Frame):
         self.org_entry.delete(0,'end')
         self.bucket_entry.delete(0,'end')
         self.token_entry.delete(0,'end')
-        self.port_input.set(433)
+        self.port_input.set(443)
         self.port_entry.configure(state=DISABLED)
         self.port_check_btn.deselect()
+        self.http_radio_btn.deselect()
+        self.https_radio_btn.select()
+        self.protocol_state.set('https://')
         try:
             os.remove(CONFIG_FILE)
         except FileNotFoundError:
             pass
 
-
 class About(tk.Frame):
     ''''''
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="This is the about page.")
-        label.pack(pady=10, padx=10)
+
+        spacer_frame = tk.Frame(self)
+        spacer_frame.pack(side=TOP, pady=25)
+
+        load = Image.open("radio_tower.png")
+        render = ImageTk.PhotoImage(load)
+        img = tk.Label(self, image=render)
+        img.image = render
+        img.pack(side=TOP)
+
+        title_label = tk.Label(self, text="FarFlux", font='Verdana 10 bold')
+        title_label.pack(side=TOP, pady=5)
+
+        version_label = tk.Label(self, text="version: 1.0")
+        version_label.pack(side=TOP)
+
+        repolink_label = tk.Label(self, text="github.com/HB9VQQ/FarFlux", fg='blue', cursor='hand2')
+        repolink_label.bind("<Button-1>", lambda e: self.callback('https://github.com/HB9VQQ/FarFlux'))
+        repolink_label.pack(side=TOP, pady=10)
+
+        callsign_label = tk.Label(self, text="QRZ: HBV9QQ", fg='blue', cursor='hand2')
+        callsign_label.bind("<Button-1>", lambda e: self.callback('https://www.qrz.com/db/hb9vqq'))
+        callsign_label.pack(side=TOP, pady=20)
+
+    def callback(self, url):
+        webbrowser.open_new(url)
 
 #   *****   MAIN   *****
 if __name__ == "__main__":
-    if not os.path.exists(f'C:/Users/{os.getlogin()}/FarFlux'):
+    if not os.path.exists(f'C:/Users/{os.getlogin()}/AppData/Roaming/FarFlux'):
         os.mkdir(f'C:/Users/{os.getlogin()}/AppData/Roaming/FarFlux')
     CONFIG_FILE = f'C:/Users/{os.getlogin()}/AppData/Roaming/FarFlux/config.json'
     root=App()
     root.title('    FarFlux')
-    root.wm_geometry("600x300")
+    root.wm_geometry("600x320")
     root.resizable(False, False)
     root.iconbitmap('radio_tower.ico')
     root.mainloop()

@@ -28,3 +28,12 @@ Example Screenshot
 
 ![image](https://user-images.githubusercontent.com/75934980/113707087-b1375900-96df-11eb-8e1b-792219e05323.png)
 
+
+Windows scheduled Task
+----------------------
+Click on "Schedule Upload Tasks" to create a windows task scheduler job which uploads the Faros beacon spots every 15 minutes.
+
+![image](https://user-images.githubusercontent.com/75934980/113707888-d5476a00-96e0-11eb-8a24-7b10b41c9a99.png)
+
+
+

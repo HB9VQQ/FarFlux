@@ -15,7 +15,10 @@ Configuration
 ==============
 The FarFlux Utility requires the configuration from your InfluxDB in order to write to the database:
 - InfluxDB URL (e.g. https://eu-central-1-1.aws.cloud2.influxdata.com)
-- Port used for communication if you use a self-hosted InfluxDB (defaults to 8086)
 - OrganizationID (e.g. beacon_mon)
 - Bucket (e.g. faros_spots)
 - Token (authentication token)
+- Port used for communication if you use a self-hosted InfluxDB (defaults to 8086)
+
+Example Screenshot
+-------------------

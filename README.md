@@ -18,7 +18,7 @@ The FarFlux Utility requires the configuration from your InfluxDB in order to wr
 - OrganizationID (e.g. MyOrg)
 - Bucket (e.g. beacon)
 - Token (authentication token)
-- Port used for communication if you use a self-hosted InfluxDB (defaults to 8086)
+- Port used for communication if you use a self-hosted InfluxDB (defaults to 443/TLS)
 
 Then click on "Apply"
 

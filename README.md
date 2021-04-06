@@ -7,7 +7,7 @@ InfluxDB provides a <b>free</b> cloud-hosted database https://www.influxdata.com
 - If you use the cloud-hosted database provided by InfluxDB (free or paid plan) the communication port is 443 (TLS encryption)
 - If you self-host the InfluxDB OSS the default communication port is 8086 (unencrypted or TLS encrypted)
 
-Grafana is Open Source Software, available as a <b>free</b> hosted service https://grafana.com/products/cloud/?pg=hp&hero-sub-1-btn2 or can be downloaded and self-hosted on many different platforms https://grafana.com/grafana/download?pg=get&plcmt=selfmanaged-box1-cta1&edition=enterprise. An example can be found here https://grafana.gafner.net/
+Grafana is Open Source Software, available as a <b>free</b> hosted service https://grafana.com/products/cloud/?pg=hp&hero-sub-1-btn2 or can be downloaded and self-hosted on many different platforms https://grafana.com/grafana/download?pg=get&plcmt=selfmanaged-box1-cta1&edition=enterprise. An example of a CW Beacon Monitor can be found here https://grafana.gafner.net/ (registration required).
 
 
 ![image](https://user-images.githubusercontent.com/75934980/113480671-db95d600-9495-11eb-97ee-800ca1ad2cf6.png)

@@ -20,6 +20,11 @@ The FarFlux Utility requires the configuration from your InfluxDB in order to wr
 - Token (authentication token)
 - Port used for communication if you use a self-hosted InfluxDB (defaults to 8086)
 
+Then click on "Apply"
+
 Example Screenshot
 -------------------
 ![image](https://user-images.githubusercontent.com/75934980/113706800-63225580-96df-11eb-9f55-115f253d59b1.png)
+
+![image](https://user-images.githubusercontent.com/75934980/113707087-b1375900-96df-11eb-8e1b-792219e05323.png)
+

@@ -22,3 +22,4 @@ The FarFlux Utility requires the configuration from your InfluxDB in order to wr
 
 Example Screenshot
 -------------------
+![image](https://user-images.githubusercontent.com/75934980/113706800-63225580-96df-11eb-9f55-115f253d59b1.png)

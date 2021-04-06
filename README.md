@@ -19,7 +19,7 @@ The FarFlux Utility requires the configuration from your InfluxDB in order to wr
 - InfluxDB URL (e.g. https://eu-central-1-1.aws.cloud2.influxdata.com)
 - OrganizationID (e.g. MyOrg)
 - Bucket (database bucket, e.g. beacon)
-- Token (authentication token)
+- Token (All Access Token for authentication)
 - Port used for communication if you use a self-hosted InfluxDB (defaults to 443/TLS)
 
 Then click on "Apply"

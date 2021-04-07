@@ -28,7 +28,8 @@ Example Screenshot (cloud-hosted)
 -------------------
 ![image](https://user-images.githubusercontent.com/75934980/113779041-67755f80-972d-11eb-904d-4cf52ea0d918.png)
 
-![image](https://user-images.githubusercontent.com/75934980/113707087-b1375900-96df-11eb-8e1b-792219e05323.png)
+![image](https://user-images.githubusercontent.com/75934980/113899696-55e39480-97cd-11eb-970a-41a1b4eb9f89.png)
+
 
 
 Windows scheduled Task

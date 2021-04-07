@@ -182,4 +182,6 @@ def create_task():
         tasks = get_tasks()
         next_run = tasks["\FarFlux_Upload"]["NextRunTime"]
         message = f'FarFlux upload task created.\nNext run: {next_run}'
+    else:
+        message = msg
     return message

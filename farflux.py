@@ -78,7 +78,7 @@ def get_tasks():
     returns all scheduled tasks on user's system
     schema: {'TaskName': {'NextRunTime': NextRunTime, 'Status': Status}
     '''
-    proc = Popen('schtasks /query /fo CSV', stdout=PIPE)
+    proc = Popen('schtasks /query /fo CSV /nh', stdout=PIPE)
     output = proc.stdout.read()
     proc.stdout.close()
     lines = output.splitlines()
@@ -88,8 +88,6 @@ def get_tasks():
         try:
             value_list = line.decode(encoding="utf-8").split(',')
         except UnicodeDecodeError:
-            continue
-        if value_list[0].replace('\"', '') == "TaskName":
             continue
         tasks[value_list[0].replace('\"', '')] = {
             "NextRunTime": value_list[1].replace('\"', ''),
@@ -107,7 +105,7 @@ def ch_task_status(status):
     proc = Popen(command, stdout=PIPE)
     output = proc.stdout.read()
     proc.stdout.close()
-    return output.decode("utf-8")
+    return output
 
 def delete_task():
     '''    '''
@@ -116,58 +114,24 @@ def delete_task():
     proc = Popen(command, stdout=PIPE)
     output = proc.stdout.read()
     proc.stdout.close()
-    return output.decode("utf-8")
+    return output
 
-def check_task(take_action):
+def check_task():
     '''    '''
     tasks = get_tasks()
     existing_task = '\FarFlux_Upload' in tasks.keys()
     result = 0
     message = 'FarFlux upload task not scheduled.'
     if existing_task:
+        result = 1
         next_run = tasks["\FarFlux_Upload"]["NextRunTime"] 
         task_status = tasks["\FarFlux_Upload"]["Status"]
-        if task_status == 'Ready':
-            result = 1
-            message = f'FarFlux upload task scheduled.\nNext run: {next_run}'
-        elif task_status == 'Disabled':
-            if take_action == True:
-                msg = ch_task_status('/ENABLE')
-                tasks = get_tasks()
-                next_run = tasks["\FarFlux_Upload"]["NextRunTime"]
-                if 'SUCCESS' in msg:
-                    result = 2
-                    message = f'FarFlux upload task enabled.\nNext run: {next_run}'
-                else:
-                    result = 3
-                    message = msg
-            else:
-                result = 9
-                message = f'FarFlux upload status: {task_status}'
-        else:
-            if take_action == True:
-                msg = delete_task()
-                if 'SUCCESS' in msg:
-                    msg = create_task()
-                    if 'SUCCESS' in msg:
-                        tasks = get_tasks()
-                        next_run = tasks["\FarFlux_Upload"]["NextRunTime"]
-                        result = 4
-                        message = f'FarFlux upload task recreated.\nNext run: {next_run}'
-                    else:
-                        result = 5
-                        message = msg
-                else:
-                    result = 6
-                    message = msg
-            else:
-                result = 9
-                message = f'FarFlux upload status: {task_status}'
+        message = f'FarFlux upload scheduled.\nNext run: {next_run}\nStatus: {task_status}'
     return (message, result)
 
 def create_task():
     '''    '''
-    check = check_task(take_action=True)
+    check = check_task()
     if check[1] != 0:
         return check[0]
     task_name = 'FarFlux_Upload'
@@ -177,11 +141,9 @@ def create_task():
                  stdout=PIPE)
     output = proc.stdout.read()
     proc.stdout.close()
-    msg = output.decode("utf-8")
-    if 'SUCCESS' in msg:
-        tasks = get_tasks()
-        next_run = tasks["\FarFlux_Upload"]["NextRunTime"]
-        message = f'FarFlux upload task created.\nNext run: {next_run}'
-    else:
-        message = msg
+    msg = output # unused
+    tasks = get_tasks()
+    next_run = tasks["\FarFlux_Upload"]["NextRunTime"]
+    task_status = tasks["\FarFlux_Upload"]["Status"]
+    message = f'FarFlux upload task created.\nNext run: {next_run}\nStatus: {task_status}'
     return message

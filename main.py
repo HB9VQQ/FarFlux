@@ -7,6 +7,7 @@ from PIL import Image, ImageTk
 import json
 import os
 import webbrowser
+import logging
 
 from farflux import get_resources, check_task, delete_task, connection_test, create_task
 
@@ -155,7 +156,7 @@ class Landing(tk.Frame):
     def check(self):
         ''''''
         self.refresh()
-        check = check_task(take_action=False)
+        check = check_task()
         status = check[1]
         message = check[0]
         self.info_text.insert('end', '\n\n'+message)
@@ -167,7 +168,7 @@ class Landing(tk.Frame):
 
     def schedule(self):
         ''''''
-        check = check_task(take_action=False)
+        check = check_task()
         message = check[0]
         status = check[1]
         if status == 0:
@@ -180,7 +181,7 @@ class Landing(tk.Frame):
 
     def delete(self):
         ''''''
-        check = check_task(take_action=False)
+        check = check_task()
         status = check[1]
         message = check[0]
         if status == 0:
@@ -189,16 +190,14 @@ class Landing(tk.Frame):
             delete = messagebox.askokcancel('Delete upload task.',
                             message+'\n\n'+'Do you wish to remove the upload task?')
             if delete:
-                msg = delete_task()
-                if 'SUCCESS' in msg:
+                delete_task()
+                check = check_task()
+                status = check[1]
+                message = check[0]
+                if status == 0:
                     title = 'Deleted'
                     message = 'FarFlux upload task deleted.'
-                else:
-                    title = 'Error'
-                    message = msg
-                messagebox.showinfo(title, message)
-                check = check_task(take_action=False)
-                message = check[0]
+                    messagebox.showinfo(title, message)             
         self.refresh()
         self.info_text.insert('end', '\n\n'+message)
         self.check_delete_button.configure(text='Check\nTask', command=self.check)
@@ -392,6 +391,13 @@ if __name__ == "__main__":
     far_flux_dir = f'C:/Users/{os.getlogin()}/AppData/Roaming/FarFlux/'
     get_resources()
     os.chdir(far_flux_dir)
+
+    #   *****   UNUSED  LOGGING   *****
+    logging.basicConfig(handlers=[logging.FileHandler(
+        filename=f'farflux.log', encoding='utf-8', mode='a+')],
+        format='%(asctime)s >> %(message)s',
+        level=logging.INFO)
+
     CONFIG_FILE = 'config.json'
     root=App()
     root.title('    FarFlux')

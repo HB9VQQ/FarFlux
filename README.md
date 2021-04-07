@@ -36,7 +36,8 @@ Windows scheduled Task
 ----------------------
 Click on "Schedule Task" to create a windows task scheduler job which uploads the Faros beacon spots every 15 minutes to the database.
 
-![image](https://user-images.githubusercontent.com/75934980/113707888-d5476a00-96e0-11eb-8a24-7b10b41c9a99.png)
+![image](https://user-images.githubusercontent.com/75934980/113900173-d7d3bd80-97cd-11eb-8f0c-425ca8cd64de.png)
+
 
 
 

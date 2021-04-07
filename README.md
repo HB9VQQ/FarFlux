@@ -15,7 +15,7 @@ Grafana is Open Source Software, available as a <b>free</b> hosted service https
 
 Configuration
 ==============
-The FarFlux Utility requires the configuration from your InfluxDB in order to write to the database:
+The FarFlux Utility requires the configuration from your InfluxDB in order to write to the database. From "File" select "Settings" to configure FarFlux.
 - InfluxDB URL (e.g. https://eu-central-1-1.aws.cloud2.influxdata.com)
 - OrganizationID (e.g. MyOrg)
 - Bucket (database bucket, e.g. beacon)

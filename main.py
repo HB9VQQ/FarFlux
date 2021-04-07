@@ -6,10 +6,9 @@ from PIL import Image, ImageTk
 
 import json
 import os
-import sys
 import webbrowser
 
-from farflux import connection_test, schedule_task
+from farflux import get_resources, check_task, delete_task, connection_test, create_task
 
 class App(tk.Tk):
     '''app controller definition'''
@@ -45,9 +44,9 @@ class App(tk.Tk):
     def show_frame(self, controller):
         '''frame controller'''
         frame = self.frames[controller]
+        frame.tkraise()
         if controller.__name__ == 'Landing':
             frame.refresh()
-        frame.tkraise()
 
 #   *****   PAGES   *****
 class Landing(tk.Frame):
@@ -82,7 +81,7 @@ class Landing(tk.Frame):
         refresh_btn.grid(row=1, rowspan=2, column=2, padx=20)
 
         info_frame = tk.Frame(self)
-        info_frame.pack(pady=14)
+        info_frame.pack(pady=12)
 
         scrollbar = tk.Scrollbar(info_frame, orient=VERTICAL)
         scrollbar.grid(row=0, column=1, sticky=N+S+E)
@@ -91,9 +90,16 @@ class Landing(tk.Frame):
         self.info_text.insert(1.0, f'{self.status_message}')
         self.info_text.grid(row=0, column=0)
 
-        self.schedule_button = tk.Button(info_frame, text='Schedule\nUpload Task', 
-                                    command=self.schedule, width=20, state=self.status)
-        self.schedule_button.grid(row=1, column=0, pady=14)
+        button_frame = tk.Frame(self)
+        button_frame.pack(pady=12)
+
+        self.schedule_button = tk.Button(button_frame, text='Schedule\nTask', 
+                                    command=self.schedule, width=10, state=self.status)
+        self.schedule_button.grid(row=0, column=0, padx=5)
+
+        self.check_delete_button = tk.Button(button_frame, text='Check\nTask', 
+                                    command=self.check, width=10)
+        self.check_delete_button.grid(row=0, column=1, padx=5)
 
     #   *****   COMMAND FUNCTIONS   *****
     def check_db(self):
@@ -132,9 +138,7 @@ class Landing(tk.Frame):
         self.db_connection = self.check_db()
         db_status = self.db_connection[0]
         db_message = self.db_connection[1]
-        
         info_logs = f'Directory not present:\n{self.logs_path}'
-
         if self.logs_available == False and db_status == 1:
             self.status = DISABLED
             self.status_message = info_logs
@@ -147,14 +151,58 @@ class Landing(tk.Frame):
         else:
             self.status = NORMAL
             self.status_message = 'Configuration complete!'
-        
+    
+    def check(self):
+        ''''''
+        self.refresh()
+        check = check_task(take_action=False)
+        status = check[1]
+        message = check[0]
+        self.info_text.insert('end', '\n\n'+message)
+        if status != 0:
+            messagebox.showinfo('Upload task found.', message)
+            self.check_delete_button.configure(text='Delete\nTask', command=self.delete)
+        else:
+            messagebox.showinfo('No upload task found.', message)
+
     def schedule(self):
         ''''''
-        schedule_task()
-        messagebox.showinfo("Upload Task Created", 
-                            "Beacon data will be uploaded every 15 minutes.\n\nClosing application.")
-        sys.exit()
+        check = check_task(take_action=False)
+        message = check[0]
+        status = check[1]
+        if status == 0:
+            message = create_task()
+            messagebox.showinfo("Upload Task Created", message)
+        else:
+            messagebox.showwarning('Already scheduled.', message)
+        self.refresh()
+        self.info_text.insert('end', '\n\n'+message)
 
+    def delete(self):
+        ''''''
+        check = check_task(take_action=False)
+        status = check[1]
+        message = check[0]
+        if status == 0:
+            messagebox.showwarning('No upload task found.', message)
+        else:
+            delete = messagebox.askokcancel('Delete upload task.',
+                            message+'\n\n'+'Do you wish to remove the upload task?')
+            if delete:
+                msg = delete_task()
+                if 'SUCCESS' in msg:
+                    title = 'Deleted'
+                    message = 'FarFlux upload task deleted.'
+                else:
+                    title = 'Error'
+                    message = msg
+                messagebox.showinfo(title, message)
+                check = check_task(take_action=False)
+                message = check[0]
+        self.refresh()
+        self.info_text.insert('end', '\n\n'+message)
+        self.check_delete_button.configure(text='Check\nTask', command=self.check)
+        
 class Settings(tk.Frame):
     ''''''
     def __init__(self, parent, controller):
@@ -341,9 +389,10 @@ class About(tk.Frame):
 
 #   *****   MAIN   *****
 if __name__ == "__main__":
-    if not os.path.exists(f'C:/Users/{os.getlogin()}/AppData/Roaming/FarFlux'):
-        os.mkdir(f'C:/Users/{os.getlogin()}/AppData/Roaming/FarFlux')
-    CONFIG_FILE = f'C:/Users/{os.getlogin()}/AppData/Roaming/FarFlux/config.json'
+    far_flux_dir = f'C:/Users/{os.getlogin()}/AppData/Roaming/FarFlux/'
+    get_resources()
+    os.chdir(far_flux_dir)
+    CONFIG_FILE = 'config.json'
     root=App()
     root.title('    FarFlux')
     root.wm_geometry("600x320")

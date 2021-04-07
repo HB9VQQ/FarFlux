@@ -85,7 +85,10 @@ def get_tasks():
     tasks = {}
     item = 1
     for line in lines:
-        value_list = line.decode(encoding="utf-8").split(',')
+        try:
+            value_list = line.decode(encoding="utf-8").split(',')
+        except UnicodeDecodeError:
+            continue
         if value_list[0].replace('\"', '') == "TaskName":
             continue
         tasks[value_list[0].replace('\"', '')] = {

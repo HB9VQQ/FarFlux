@@ -1,0 +1,116 @@
+{
+    "4U1UN": {
+        "call": "4U1UN",
+        "location": "USA",
+        "city": "New York",
+        "geohash": "dr5ruf3fz"
+    },
+    "VE8AT": {
+        "call": "VE8AT",
+        "location": "Canada",
+        "city": "Eureka",
+        "geohash": "fn4zp7h18"
+    },
+    "W6WX": {
+        "call": "W6WX",
+        "location": "USA",
+        "city": "Mt. Umunhum",
+        "geohash": "9q973uv08"
+    },
+    "KH6RS": {
+        "call": "KH6RS",
+        "location": "Hawaii",
+        "city": "Maui",
+        "geohash": "8e8y4hjnj"
+    },
+    "ZL6B": {
+        "call": "ZL6B",
+        "location": "New Zealand",
+        "city": "Masterton",
+        "geohash": "rbsyeb284"
+    },
+    "VK6RBP": {
+        "call": "VK6RBP",
+        "location": "Australia",
+        "city": "Roleystone",
+        "geohash": "qd69368t8"
+    },
+    "HB9VQQ": {
+        "call": "HB9VQQ",
+        "location": "Switzerland",
+        "city": "Hinwil",
+        "geohash": "u0qm17dzm"
+    },
+    "JA2IGY": {
+        "call": "JA2IGY",
+        "location": "Japan",
+        "city": "Mt. Asama",
+        "geohash": "xn1k093x8"
+    },
+    "RR9O": {
+        "call": "RR9O",
+        "location": "Russia",
+        "city": "Novosibirsk",
+        "geohash": "vcfcnvq88"
+    },
+    "VR2B": {
+        "call": "VR2B",
+        "location": "Hong Kong",
+        "city": "Hong Kong",
+        "geohash": "wecntw4p2"
+    },
+    "4S7B": {
+        "call": "4S7B",
+        "location": "Sri Lanka",
+        "city": "Colombo",
+        "geohash": "tc0z1nt65"
+    },
+    "ZS6DN": {
+        "call": "ZS6DN",
+        "location": "South Africa",
+        "city": "Pretoria",
+        "geohash": "kekhehjsb"
+    },
+    "5Z4B": {
+        "call": "5Z4B",
+        "location": "Kenya",
+        "city": "Kariobangi",
+        "geohash": "kzf65nfvr"
+    },
+    "4X6TU": {
+        "call": "4X6TU",
+        "location": "Israel",
+        "city": "Tel Aviv",
+        "geohash": "sv8wrj4q0"
+    },
+    "OH2B": {
+        "call": "OH2B",
+        "location": "Finland",
+        "city": "Lohja",
+        "geohash": "ud9wm52tu"
+    },
+    "CS3B": {
+        "call": "CS3B",
+        "location": "Madeira",
+        "city": "Sao Jorge",
+        "geohash": "etgfwym0r"
+    },
+    "LU4AA": {
+        "call": "LU4AA",
+        "location": "Argentina",
+        "city": "Buenos Aires",
+        "geohash": "69y7pj4py"
+    },
+    "OA4B": {
+        "call": "OA4B",
+        "location": "Peru",
+        "city": "Lima",
+        "geohash": "6mc5pqq70"
+    },
+    "YV5B": {
+        "call": "YV5B",
+        "location": "Venezuela",
+        "city": "Caracas",
+        "geohash": "d3xg8xuns"
+    }
+}

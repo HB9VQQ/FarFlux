@@ -2,7 +2,7 @@
 
 I am receiving many questions regarding FarFlux. Currently it is still under development but will be released very soon, please check back regularly or follow on [Twitter](https://twitter.com/HB9VQQ) for the latest updates. Thank you.
 
-FarFlux is a Windows utility which imports CW Beacon Logs from [Faros](http://www.dxatlas.com/Faros/) and uploads the data to an InfluxDB https://www.influxdata.com/ for further processing by a observability tool like Grafana https://grafana.com/. FarFlux validates the Faros Beacon Logs and uploads only Beacon Spots where evidence >1. The Program can be scheduled to run via the Windows Task Scheduler to upload CW Beacon Spots every 15 minutes to the database.
+FarFlux is a Windows utility which imports CW Beacon Logs from [Faros](http://www.dxatlas.com/Faros/) and uploads the data to an InfluxDB https://www.influxdata.com/ for further processing by a observability tool like [Grafana](https://grafana.com/). FarFlux validates the Faros Beacon Logs and uploads only Beacon Spots where evidence >1. The Program can be scheduled to run via the Windows Task Scheduler to upload CW Beacon Spots every 15 minutes to the database.
 
 InfluxDB provides a <b>free</b> cloud-hosted database https://www.influxdata.com/products/influxdb-cloud/ with a data retention of 30 days which can be upgraded to (paid) unlimited data retention at anytime. Alternatively InfluxDB OSS can be installed on your own server (self-hosted) on Linux, MacOS, Docker and Kubernetes https://docs.influxdata.com/influxdb/v2.0/get-started/#manually-download-and-install
 

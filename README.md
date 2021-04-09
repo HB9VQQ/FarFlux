@@ -15,6 +15,11 @@ Grafana is Open Source Software, available as a <b>free</b> hosted service https
 ![image](https://user-images.githubusercontent.com/75934980/113480671-db95d600-9495-11eb-97ee-800ca1ad2cf6.png)
 
 
+Installation
+============
+
+
+
 Configuration
 ==============
 The FarFlux Utility requires the configuration from your InfluxDB in order to write to the database. From "File" select "Settings" to configure FarFlux.

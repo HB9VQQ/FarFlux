@@ -42,6 +42,8 @@ Click on "Schedule Task" to create a windows task scheduler job which uploads th
 
 ![image](https://user-images.githubusercontent.com/75934980/113907126-47997680-97d5-11eb-84e6-0fb8d64c737b.png)
 
+Once the Task has been successfully created you can safely close FarFlux (Exit), no need to keep it running.
+
 
 
 

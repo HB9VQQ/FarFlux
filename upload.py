@@ -5,7 +5,7 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 import os
 import json
 import glob
-import wget
+import requests
 import logging
 
 def get_latest_log():
@@ -100,9 +100,14 @@ if __name__ == '__main__':
     os.chdir(far_flux_dir)
 
     if not os.path.exists('geohash.json'):
-        wget.download('https://raw.githubusercontent.com/HB9VQQ/FarFlux/main/geohash.json')
+        url = "https://raw.githubusercontent.com/HB9VQQ/FarFlux/main/"
+        fname = "geohash.json"
+        r = requests.get(url+fname)
+        open(fname, "wb").write(r.content)
+
     with open('geohash.json') as file:
         geo_hash_table = json.load(file)
+        
     with open('config.json') as file:
         config = json.load(file)
 

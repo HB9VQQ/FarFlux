@@ -5,20 +5,31 @@ from urllib3.exceptions import LocationValueError, NewConnectionError
 from influxdb_client.rest import ApiException
 
 import os
-import wget
+import requests
 
 def get_resources():
     '''    '''
     far_flux_dir = f'C:/Users/{os.getlogin()}/AppData/Roaming/FarFlux/'
+    url = "https://raw.githubusercontent.com/HB9VQQ/FarFlux/main/"
+
     if not os.path.exists(far_flux_dir):
         os.mkdir(far_flux_dir)
     os.chdir(far_flux_dir)
+    
     if not os.path.exists('geohash.json'):
-        wget.download('https://raw.githubusercontent.com/HB9VQQ/FarFlux/main/geohash.json')
+        fname = "geohash.json"
+        r = requests.get(url+fname)
+        open(fname, "wb").write(r.content)
+
     if not os.path.exists("radio_tower.ico"):
-        wget.download('https://raw.githubusercontent.com/HB9VQQ/FarFlux/main/radio_tower.ico')
+        fname = "radio_tower.ico"
+        r = requests.get(url+fname)
+        open(fname, "wb").write(r.content)
+    
     if not os.path.exists("radio_tower.png"):
-        wget.download('https://raw.githubusercontent.com/HB9VQQ/FarFlux/main/radio_tower.png')
+        fname = "radio_tower.png"
+        r = requests.get(url+fname)
+        open(fname, "wb").write(r.content)
 
 def connection_test(url, token, org_id, bucket):
     '''

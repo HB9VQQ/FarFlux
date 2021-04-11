@@ -48,6 +48,8 @@ class App(tk.Tk):
         frame.tkraise()
         if controller.__name__ == 'Landing':
             frame.refresh()
+        if controller.__name__ == 'Settings':
+            frame.reset_settings()
 
 #   *****   PAGES   *****
 class Landing(tk.Frame):
@@ -266,6 +268,23 @@ class Settings(tk.Frame):
         self.port_entry = tk.Entry(inner_frame, state=DISABLED, width=70, textvariable=self.port_input)
         self.port_entry.grid(row=5,column=1, pady=8, columnspan=6)
 
+        self.reset_settings()
+               
+        self.apply_btn = tk.Button(inner_frame, text="Apply", command=lambda: self.apply(controller), 
+                              width=15, state=DISABLED)
+        self.apply_btn.grid(row=6,column=1, pady=5)
+        self.apply_btn.after(500, self.refresh_apply)
+
+        reset_btn = tk.Button(inner_frame, text="Reset", command=self.reset, width=15)
+        reset_btn.grid(row=6,column=2, pady=5)
+    
+    def reset_settings(self):
+        ''''''
+        self.url_entry.delete(0,'end')
+        self.org_entry.delete(0,'end')
+        self.bucket_entry.delete(0,'end')
+        self.token_entry.delete(0,'end')
+
         if os.path.exists(CONFIG_FILE):
             with open(CONFIG_FILE) as json_file:
                 self.config = json.load(json_file)
@@ -289,15 +308,7 @@ class Settings(tk.Frame):
                 self.protocol_state.set('http://')
                 self.https_radio_btn.deselect()
                 self.http_radio_btn.select()
-               
-        self.apply_btn = tk.Button(inner_frame, text="Apply", command=lambda: self.apply(controller), 
-                              width=15, state=DISABLED)
-        self.apply_btn.grid(row=6,column=1, pady=5)
-        self.apply_btn.after(500, self.refresh_apply)
 
-        reset_btn = tk.Button(inner_frame, text="Reset", command=self.reset, width=15)
-        reset_btn.grid(row=6,column=2, pady=5)
-    
     def port_select(self):
         ''''''
         if self.port_state.get() == 1:

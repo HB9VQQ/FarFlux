@@ -4,3 +4,5 @@ __pycache__/
 __init__.py
 test.py
 unused.py
+
+setup.py

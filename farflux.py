@@ -148,7 +148,7 @@ def create_task():
     task_name = 'FarFlux_Upload'
     interval = 15
     task_command = f'"C:\\Users\\{os.getlogin()}\\AppData\\Local\\Programs\\FarFlux\\FarFlux_upload.exe"'
-    proc = Popen(f'schtasks /create /sc minute /mo {interval} /tn {task_name} /tr {task_command}',
+    proc = Popen(f'schtasks /ru "SYSTEM" /create /sc minute /mo {interval} /tn {task_name} /tr {task_command}',
                  stdout=PIPE, shell=True)
     output = proc.stdout.read()
     proc.stdout.close()

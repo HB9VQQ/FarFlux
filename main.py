@@ -174,8 +174,12 @@ class Landing(tk.Frame):
         message = check[0]
         status = check[1]
         if status == 0:
-            message = create_task()
-            messagebox.showinfo("Upload Task Created", message)
+            try:
+                message = create_task()
+                messagebox.showinfo("Upload task created", message)
+            except KeyError:
+                message = 'Failed to create task.\nPlease run FarFlux as admin.'
+                messagebox.showwarning('Create task failed.', message)            
         else:
             messagebox.showwarning('Already scheduled.', message)
         self.refresh()

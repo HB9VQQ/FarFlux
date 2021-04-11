@@ -399,15 +399,15 @@ class About(tk.Frame):
 
 #   *****   MAIN   *****
 if __name__ == "__main__":
-    far_flux_dir = f'C:/Users/{os.getlogin()}/AppData/Roaming/FarFlux/'
+    far_flux_dir = f'C:/Users/{os.getlogin()}/AppData/Local/Programs/FarFlux/'
     get_resources()
     os.chdir(far_flux_dir)
 
     #   *****   UNUSED  LOGGING   *****
-    logging.basicConfig(handlers=[logging.FileHandler(
-        filename=f'farflux.log', encoding='utf-8', mode='a+')],
-        format='%(asctime)s >> %(message)s',
-        level=logging.INFO)
+    #logging.basicConfig(handlers=[logging.FileHandler(
+    #    filename=f'farflux.log', encoding='utf-8', mode='a+')],
+    #    format='%(asctime)s >> %(message)s',
+    #    level=logging.INFO)
 
     CONFIG_FILE = 'config.json'
     root=App()

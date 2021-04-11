@@ -9,7 +9,7 @@ import requests
 
 def get_resources():
     '''    '''
-    far_flux_dir = f'C:/Users/{os.getlogin()}/AppData/Roaming/FarFlux/'
+    far_flux_dir = f'C:/Users/{os.getlogin()}/AppData/Local/Programs/FarFlux/'
     url = "https://raw.githubusercontent.com/HB9VQQ/FarFlux/main/"
 
     if not os.path.exists(far_flux_dir):
@@ -89,7 +89,7 @@ def get_tasks():
     returns all scheduled tasks on user's system
     schema: {'TaskName': {'NextRunTime': NextRunTime, 'Status': Status}
     '''
-    proc = Popen('schtasks /query /fo CSV /nh', stdout=PIPE)
+    proc = Popen('schtasks /query /fo CSV /nh', stdout=PIPE, shell=True)
     output = proc.stdout.read()
     proc.stdout.close()
     lines = output.splitlines()
@@ -112,8 +112,8 @@ def ch_task_status(status):
     /ENABLE | /DISABLE
     '''
     task_name = '\FarFlux_Upload'
-    command = ['schtasks', '/change', '/tn', task_name, status]
-    proc = Popen(command, stdout=PIPE)
+    command = f'schtasks /change /tn {task_name} status'
+    proc = Popen(command, stdout=PIPE, shell=True)
     output = proc.stdout.read()
     proc.stdout.close()
     return output
@@ -121,8 +121,8 @@ def ch_task_status(status):
 def delete_task():
     '''    '''
     task_name = '\FarFlux_Upload'
-    command = ['schtasks', '/delete', '/tn', task_name, '/f']
-    proc = Popen(command, stdout=PIPE)
+    command = f'schtasks /delete /tn {task_name} /f'
+    proc = Popen(command, stdout=PIPE, shell=True)
     output = proc.stdout.read()
     proc.stdout.close()
     return output
@@ -147,9 +147,9 @@ def create_task():
         return check[0]
     task_name = 'FarFlux_Upload'
     interval = 15
-    task_command = '"C:\\Git\\FarFlux\\.venv\\Scripts\\python.exe C:\\Git\\FarFlux\\upload.py"'
+    task_command = f'"C:\\Users\\{os.getlogin()}\\AppData\\Local\\Programs\\FarFlux\\FarFlux_upload.exe"'
     proc = Popen(f'schtasks /create /sc minute /mo {interval} /tn {task_name} /tr {task_command}',
-                 stdout=PIPE)
+                 stdout=PIPE, shell=True)
     output = proc.stdout.read()
     proc.stdout.close()
     msg = output # unused

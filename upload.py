@@ -96,7 +96,7 @@ def upload(client: InfluxDBClient, points):
     logging.info(f'uploaded {len(records)} points')
 
 if __name__ == '__main__':
-    far_flux_dir = f'C:/Users/{os.getlogin()}/AppData/Roaming/FarFlux/'
+    far_flux_dir = f'C:/Users/{os.getlogin()}/AppData/Local/Programs/FarFlux/'
     os.chdir(far_flux_dir)
 
     if not os.path.exists('geohash.json'):

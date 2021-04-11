@@ -2,7 +2,7 @@
 beacon-influx-master/
 __pycache__/
 __init__.py
+build/
+
 test.py
 unused.py
-
-setup.py

@@ -19,6 +19,5 @@ setup(name='FarFlux',
       description = "Uploads valid points from Faros latest beacon log file to InfluxDB using settings set using the FarFlux.",
       options = {'build_exe': build_options,
                  'bdist_msi': {
-                     'initial_target_dir': f'{os.getenv("SystemDrive")}\\Users\\{os.getlogin()}\\AppData\\Local\\Programs\\FarFlux\\',
                      'install_icon': 'radio_tower.ico'}},
       executables = executables)

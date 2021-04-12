@@ -18,7 +18,7 @@ Grafana is Open Source Software, available as a <b>free</b> [hosted service](htt
 Installation
 ============
 
-Download the latest FarFlux Release from the dist folder and start the MSI installer file. Accept the default install path and click on Next. Once the installation is complete click on Finish.
+Download the latest FarFlux Release from the dist folder and start the MSI installer file. Accept the default install path and click on Next. Once the installation is completed click on Finish.
 
 ![image](https://user-images.githubusercontent.com/75934980/114466174-65594800-9be8-11eb-9908-767105c5e979.png)
 

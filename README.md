@@ -22,6 +22,8 @@ Download the latest FarFlux Release from the dist folder and start the installer
 
 ![image](https://user-images.githubusercontent.com/75934980/114466174-65594800-9be8-11eb-9908-767105c5e979.png)
 
+<b>Important</b> : The FarFlux Program has to be started with Admin privileges. Right-click the FarFlux Program and select "Run as administrator"
+
 
 
 

@@ -7,7 +7,7 @@ from PIL import Image, ImageTk
 import json
 import os
 import webbrowser
-import logging
+# import logging # unused logging
 
 from farflux import get_resources, check_task, delete_task, connection_test, create_task
 
@@ -403,7 +403,7 @@ class About(tk.Frame):
 
 #   *****   MAIN   *****
 if __name__ == "__main__":
-    far_flux_dir = f'C:/Users/{os.getlogin()}/AppData/Local/Programs/FarFlux/'
+    far_flux_dir = f'{os.getenv("SystemDrive")}/Users/{os.getlogin()}/AppData/Local/Programs/FarFlux/'
     get_resources()
     os.chdir(far_flux_dir)
 

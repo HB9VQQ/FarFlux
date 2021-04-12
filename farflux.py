@@ -9,7 +9,7 @@ import requests
 
 def get_resources():
     '''    '''
-    far_flux_dir = f'C:/Users/{os.getlogin()}/AppData/Local/Programs/FarFlux/'
+    far_flux_dir = f'{os.getenv("SystemDrive")}/Users/{os.getlogin()}/AppData/Local/Programs/FarFlux/'
     url = "https://raw.githubusercontent.com/HB9VQQ/FarFlux/main/"
 
     if not os.path.exists(far_flux_dir):
@@ -147,8 +147,8 @@ def create_task():
         return check[0]
     task_name = 'FarFlux_Upload'
     interval = 15
-    task_command = f'"C:\\Users\\{os.getlogin()}\\AppData\\Local\\Programs\\FarFlux\\FarFlux_upload.exe"'
-    proc = Popen(f'schtasks /create /sc minute /mo {interval} /tn {task_name} /tr {task_command}',
+    task_command = f'"{os.getenv("SystemDrive")}\\Users\\{os.getlogin()}\\AppData\\Local\\Programs\\FarFlux\\FarFlux_upload.exe"'
+    proc = Popen(f'schtasks /create /sc minute /mo {interval} /tn {task_name} /tr {task_command} /np /rl highest',
                  stdout=PIPE, shell=True)
     output = proc.stdout.read()
     proc.stdout.close()

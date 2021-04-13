@@ -80,8 +80,7 @@ Configure the Settings. Make sure you set it to the default Data Source and fill
 
 Example Screenshot (cloud-hosted InfluxDB)
 ------------------
-
-
+![image](https://user-images.githubusercontent.com/75934980/114546860-f28ab400-9c5d-11eb-9b2d-5f56a9f4cf53.png)
 
 
 

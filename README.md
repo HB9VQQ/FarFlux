@@ -1,5 +1,7 @@
 # FarFlux
 
+Project Goal is to facilitate the setup of a [Intl. CW Monitor Station](https://www.ncdxf.org/beacon/index.html) with modern data storage and analytics tools.
+
 FarFlux is a Windows utility which imports CW Beacon Logs from [Faros](http://www.dxatlas.com/Faros/) and uploads the data to an [InfluxDB](https://www.influxdata.com/) for further processing by a observability tool like [Grafana](https://grafana.com/). FarFlux validates the Faros Beacon Logs and uploads only Beacon Spots where evidence >1. The Program can be scheduled to run via the Windows Task Scheduler to upload CW Beacon Spots every 15 minutes to the database.
 
 InfluxDB provides a <b>free</b> [cloud-hosted database](https://www.influxdata.com/products/influxdb-cloud/) with a data retention of 30 days which can be upgraded to (paid) unlimited data retention at anytime. Alternatively [InfluxDB OSS](https://docs.influxdata.com/influxdb/v2.0/get-started/#manually-download-and-install) can be installed on your own server (self-hosted) on Linux, MacOS, Docker and Kubernetes 

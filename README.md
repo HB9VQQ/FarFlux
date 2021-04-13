@@ -66,5 +66,9 @@ Once the Task has been successfully created you can safely close FarFlux (Exit),
 
 Grafana - adding InfluxDB as a Datasource
 =========================================
-Logon to your InfluxDB user interface
+Logon to your InfluxDB user interface and go to Configuration --> Data Sources. Click on "Add data source"
+![image](https://user-images.githubusercontent.com/75934980/114545209-fa495900-9c5b-11eb-9649-805683b0a40d.png)
+
+
+
 

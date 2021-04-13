@@ -16,7 +16,7 @@ Grafana is Open Source Software, available as a <b>free</b> [hosted service](htt
 
 Prerequisites
 =============
-- Working Faros installation
+- Working [Faros](http://www.dxatlas.com/Faros/) installation
 - Internet connection
 - Admin access to a InfluxDB instance
 

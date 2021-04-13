@@ -88,5 +88,5 @@ Finally click on "Save & Test" to confirm successful DB connection with your pro
 
 If the Test has succeeded you are now ready to build Grafana dashboards. To help you get started, I have added a simple Dasboard Template to the Github Repository. You can import the Template in Grafana and all you need to change is the name of the Database bucket in each panel to reflect your setting.
 
-Easiest way to do that, import the Template file (.json) into a text editor and search the file for "hb9cu". Replace "hb9cu" with your bucket name. When finisched your are  ready to import the Template into Grafana.
+Easiest way to do that, import the Template file (.json) into a text editor and search the file for "hb9cu". Replace "hb9cu" with your bucket name. When finished your are  ready to import the Template into Grafana.
 

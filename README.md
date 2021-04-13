@@ -82,6 +82,6 @@ Example Screenshot (cloud-hosted InfluxDB)
 ------------------
 ![image](https://user-images.githubusercontent.com/75934980/114546860-f28ab400-9c5d-11eb-9b2d-5f56a9f4cf53.png)
 
-
+Finally click on "Save & Test" to confirm successful DB connection with your provided credentials.
 
 

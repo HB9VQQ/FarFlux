@@ -64,5 +64,7 @@ Click on "Schedule Task" to create a windows task scheduler job which uploads th
 Once the Task has been successfully created you can safely close FarFlux (Exit), no need to keep it running. From now on the CW Beacon spots from Faros will be uploaded to the InfluxDB through the schduled Windows task every 15 minutes. Check the Data Explorer in the InfluxDB web based user interface to confirm that Beacon Spots upload is successful. Once confirmed you can go ahead with Grafana and add the Database as a Data Source to build some nice dashboards.
 
 
-
+Grafana - adding InfluxDB as a Datasource
+=========================================
+Logon to your InfluxDB user interface
 

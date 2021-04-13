@@ -1,0 +1,5234 @@
+{
+  "__inputs": [],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "7.5.3"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-worldmap-panel",
+      "name": "Worldmap Panel",
+      "version": "0.3.2"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [
+    {
+      "icon": "external link",
+      "tags": [],
+      "targetBlank": true,
+      "title": "Intl. Beacon Project",
+      "tooltip": "",
+      "type": "link",
+      "url": "https://www.ncdxf.org/beacon/"
+    }
+  ],
+  "panels": [
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "noValue": "nil",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-red",
+                "value": 1
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 2
+              },
+              {
+                "color": "light-red",
+                "value": 3
+              },
+              {
+                "color": "dark-orange",
+                "value": 4
+              },
+              {
+                "color": "dark-orange",
+                "value": 5
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 6
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 7
+              },
+              {
+                "color": "light-orange",
+                "value": 8
+              },
+              {
+                "color": "super-light-orange",
+                "value": 9
+              },
+              {
+                "color": "super-light-green",
+                "value": 10
+              },
+              {
+                "color": "super-light-green",
+                "value": 11
+              },
+              {
+                "color": "light-green",
+                "value": 12
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 13
+              },
+              {
+                "color": "dark-green",
+                "value": 14
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 0,
+        "y": 0
+      },
+      "id": 67,
+      "maxDataPoints": 100000,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"measurement\")\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\n  |> group(columns: [\"call\"])\n  |> count()\n  |> group()\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Calls heard",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "noValue": "nil",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 1
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 2
+              },
+              {
+                "color": "light-red",
+                "value": 3
+              },
+              {
+                "color": "dark-orange",
+                "value": 4
+              },
+              {
+                "color": "dark-orange",
+                "value": 5
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 6
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 7
+              },
+              {
+                "color": "light-orange",
+                "value": 8
+              },
+              {
+                "color": "super-light-orange",
+                "value": 9
+              },
+              {
+                "color": "super-light-green",
+                "value": 10
+              },
+              {
+                "color": "super-light-green",
+                "value": 11
+              },
+              {
+                "color": "light-green",
+                "value": 12
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 13
+              },
+              {
+                "color": "dark-green",
+                "value": 14
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 2,
+        "y": 0
+      },
+      "hideTimeOverride": true,
+      "id": 91,
+      "maxDataPoints": 100000,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"measurement\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> group(columns: [\"call\"])\r\n  |> count()\r\n  |> group()\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": "1d",
+      "title": "Calls heard t-1d",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 2,
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 2,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "custom",
+      "mapCenterLatitude": "36",
+      "mapCenterLongitude": "5",
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": true,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: max)\r\n  |> group(columns: [\"monitor_id\"])\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Highest SNR/Band for selected TIme range",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "dB",
+      "unitSingle": "",
+      "unitSingular": "dB",
+      "valueName": "total"
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "hiddenSeries": false,
+      "hideTimeOverride": false,
+      "id": 77,
+      "interval": "",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "maxDataPoints": 1000000,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "duration = if (uint(v: v.timeRangeStop) -  uint(v: v.timeRangeStart)) > 3600*24*1000*1000*1000*2 then 1d else 1h\n\nfrom(bucket: \"hb9cu\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"measurement\")\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\n  |> group(columns: [\"call\"])\n  |> aggregateWindow(every:duration, fn: max)\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:r._field}))\n  |> group(columns: [\"_time\"])\n  |> count()\n  |> group()\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: \"Beacons heard\"}))\n  |> keep(columns: [\"_value\", \"_time\", \"_field\"])\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Number of Beacons heard over time",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1302",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1303",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 0,
+        "y": 33
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 31,
+      "initialZoom": "4",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": 60.179994106292725,
+      "mapCenterLongitude": 24.829981327056885,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"OH2B\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "OH2B - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "18 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 7,
+        "y": 33
+      },
+      "id": 30,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"OH2B\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "OH2B - Lohja Finland - 1700 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 0,
+        "y": 45
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 28,
+      "initialZoom": "4",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": 32.81759977340698,
+      "mapCenterLongitude": -16.922743320465088,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"CS3B\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "CS3B - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "18 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 7,
+        "y": 45
+      },
+      "id": 27,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"CS3B\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "CS3B - São Jorge Madeira - 2700 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 0,
+        "y": 57
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 20,
+      "initialZoom": "4",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": 32.06465005874634,
+      "mapCenterLongitude": 34.763853549957275,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"4X6TU\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "4X6TU - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "18 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 7,
+        "y": 57
+      },
+      "id": 18,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"4X6TU\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "4X6TU - Tel Aviv Israel - 2800 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 7,
+        "x": 0,
+        "y": 69
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 72,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": 55.04847764968872,
+      "mapCenterLongitude": 82.92276620864868,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"RR9O\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "RR9O - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "18 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 17,
+        "x": 7,
+        "y": 69
+      },
+      "id": 71,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"RR9O\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "RR9O - Novosibirsk Russia - 4800 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 0,
+        "y": 82
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 34,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": 79.99722719192505,
+      "mapCenterLongitude": -85.80869436264038,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"VE8AT\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "VE8AT - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 7,
+        "y": 82
+      },
+      "id": 33,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"VE8AT\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "VE8AT - Eureka Canada - 4900km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 7,
+        "x": 0,
+        "y": 94
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 89,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": -1.016685962677002,
+      "mapCenterLongitude": 37.049996852874756,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"5Z4B\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "5Z4B - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 17,
+        "x": 7,
+        "y": 94
+      },
+      "id": 87,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"5Z4B\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "5Z4B - Kariobangi Kenya - 6000km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 0,
+        "y": 105
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 37,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": 40.750157833099365,
+      "mapCenterLongitude": -73.96822214126587,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"4U1UN\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "4U1UN - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 7,
+        "y": 105
+      },
+      "id": 68,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"beacon\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"4U1UN\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "4U1UN - New York City USA - 6300 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 0,
+        "y": 117
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 69,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": 6.891539096832275,
+      "mapCenterLongitude": 79.85599279403687,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"4S7B\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "4S7B - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "18 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 7,
+        "y": 117
+      },
+      "id": 36,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"4S7B\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "4S7B - Colombo Sri Lanka - 8000 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 0,
+        "y": 129
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 40,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": 9.09644365310669,
+      "mapCenterLongitude": -67.82390356063843,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"YV5B\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "YV5B - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "18 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 7,
+        "y": 129
+      },
+      "id": 39,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"YV5B\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "YV5B - Caracas Venezuela - 8100 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 0,
+        "y": 141
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 47,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": -25.904924869537354,
+      "mapCenterLongitude": 28.264410495758057,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"ZS6DN\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "ZS6DN - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "18 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 7,
+        "y": 141
+      },
+      "id": 45,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"ZS6DN\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "ZS6DN - Pretoria South Africa - 8400 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 7,
+        "x": 0,
+        "y": 153
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 43,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": 22.27055311203003,
+      "mapCenterLongitude": 114.15071725845337,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"VR2B\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "VR2B - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 17,
+        "x": 7,
+        "y": 153
+      },
+      "id": 42,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"VR2B\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "VR2B - Hong Kong - 9300 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 7,
+        "x": 0,
+        "y": 166
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 49,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": 37.15998888015747,
+      "mapCenterLongitude": -121.90839529037476,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"W6WX\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "W6WX - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 17,
+        "x": 7,
+        "y": 166
+      },
+      "id": 48,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"W6WX\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "W6WX - Mt. Umunhum USA - 9400 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 0,
+        "y": 176
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 55,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": 34.46130037307739,
+      "mapCenterLongitude": 136.78186655044556,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"JA2IGY\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "JA2IGY - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "18 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 7,
+        "y": 176
+      },
+      "id": 54,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"JA2IGY\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "JA2IGY - Mt. Asama Japan - 9600 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 7,
+        "x": 0,
+        "y": 188
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 52,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": -12.094037532806396,
+      "mapCenterLongitude": -77.01654195785522,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"OA4B\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "OA4B - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "18 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 17,
+        "x": 7,
+        "y": 188
+      },
+      "id": 51,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"OA4B\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "OA4B - Lima Peru - 10700 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 0,
+        "y": 199
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 58,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": -34.600088596343994,
+      "mapCenterLongitude": -58.4002947807312,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"LU4AA\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "LU4AA - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "18 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 7,
+        "y": 199
+      },
+      "id": 57,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"LU4AA\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "LU4AA - Buenos Aires Argentina  - 11400 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 0,
+        "y": 211
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 85,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": 20.765211582183838,
+      "mapCenterLongitude": -156.35031938552856,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"KH6RS\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "KH6RS - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 7,
+        "y": 211
+      },
+      "id": 84,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"KH6RS\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "KH6RS - Maui Hawaii  - 12300 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 0,
+        "y": 223
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 61,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": -32.10932493209839,
+      "mapCenterLongitude": 116.07126474380493,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": true,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"VK6RBP\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "VK6RBP - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "18 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "21 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "28 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 7,
+        "y": 223
+      },
+      "id": 60,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"VK6RBP\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "VK6RBP - Roleystone Australia  - 13800 km",
+      "type": "timeseries"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 7,
+        "x": 0,
+        "y": 235
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 64,
+      "initialZoom": "2",
+      "locationData": "table",
+      "mapCenter": "Last GeoHash",
+      "mapCenterLatitude": -41.043527126312256,
+      "mapCenterLongitude": 175.5952763557434,
+      "maxDataPoints": 100,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.6",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "name",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "_value",
+        "queryType": "geohash"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"ZL6B\")\r\n  |> group(columns: [\"call\"])\r\n  |> sort(columns:[\"_time\"])\r\n  |> aggregateWindow(every: 30d, fn: last)\r\n  |> keep(columns: [\"_value\", \"geohash\", \"call\", \"monitor_id\", \"mhz\"])\r\n  |> map(fn: (r) => ({r with name: r.call +\" (\" + r.mhz + \"mhz)\"}))\r\n  |> yield(name: \"beacon\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "-5,6",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "ZL6B - Last SNR",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "unitSingular": "",
+      "valueName": "total"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "decimals": 0,
+          "mappings": [],
+          "noValue": "No SIgnal Received",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "24 mhz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 17,
+        "x": 7,
+        "y": 235
+      },
+      "id": 63,
+      "maxDataPoints": 1000000,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"hb9cu\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"snr\")\r\n  |> filter(fn: (r) => r[\"call\"] == \"ZL6B\")\r\n  |> sort(columns:[\"mhz\"])\r\n  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field: r.mhz+\" mhz\" }))\r\n  |> keep(columns:[\"_field\", \"_time\", \"_value\"])\r\n  |> yield(name: \"max\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "ZL6B - Masterton New Zealand  - 18800 km",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [
+    "home"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "utc",
+  "title": "International CW Beacon Monitor",
+  "uid": "vt3ILoxGz",
+  "version": 7
+}

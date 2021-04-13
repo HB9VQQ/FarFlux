@@ -19,6 +19,7 @@ Prerequisites
 - Working [Faros](http://www.dxatlas.com/Faros/) installation
 - Internet connection
 - Admin access to a InfluxDB instance
+- Admin access to a Grafana instance
 
 
 
@@ -66,9 +67,26 @@ Once the Task has been successfully created you can safely close FarFlux (Exit),
 
 Grafana - adding InfluxDB as a Datasource
 =========================================
-Logon to your InfluxDB user interface and go to Configuration --> Data Sources. Click on "Add data source"
+Logon to your Grafana web interface and go to Configuration --> Data Sources. Click on "Add data source"
 ![image](https://user-images.githubusercontent.com/75934980/114545209-fa495900-9c5b-11eb-9649-805683b0a40d.png)
 
+Select InfluxDB
+![image](https://user-images.githubusercontent.com/75934980/114545484-544a1e80-9c5c-11eb-9c58-5dec070b6151.png)
+
+Configure the Settings. Make sure you set it to the default Data Source and fill in
+- URL to your InfluxDB
+- Organization (OrgID from your InfluxDB)
+- Token (Access token from your InfluxDB)
+- Default bucket (data bucket from your InfluxDB)
+
+Example Screenshot (cloud-hosted InfluxDB)
+------------------
+![image](https://user-images.githubusercontent.com/75934980/114552148-90817d00-9c64-11eb-8586-4b8f0b5e59cc.png)
 
 
+Finally click on "Save & Test" to confirm successful DB connection with your provided credentials. 
+
+If the Test has succeeded you are now ready to build Grafana dashboards. To help you get started, I have added a simple Dasboard Template to the Github Repository. You can import the Template in Grafana and all you need to change is the name of the Database bucket in each panel to reflect your setting.
+
+Easiest way to do that, import the Template file (.json) into a text editor and search the file for "hb9cu". Replace "hb9cu" with your bucket name. When finished your are  ready to import the Template into Grafana.
 

@@ -1,6 +1,6 @@
 # FarFlux
 
-I am receiving many questions regarding FarFlux. Currently it is still under development but will be released very soon, please check back regularly or follow on [Twitter](https://twitter.com/HB9VQQ) for the latest updates. Thank you.
+Project Goal is to facilitate the setup of a global network of [CW Beacon Monitor Stations](https://www.ncdxf.org/beacon/index.html) based on modern data storage and analytics technology to study and visualize HF Propagation paths for Amateur Radio communication.
 
 FarFlux is a Windows utility which imports CW Beacon Logs from [Faros](http://www.dxatlas.com/Faros/) and uploads the data to an [InfluxDB](https://www.influxdata.com/) for further processing by a observability tool like [Grafana](https://grafana.com/). FarFlux validates the Faros Beacon Logs and uploads only Beacon Spots where evidence >1. The Program can be scheduled to run via the Windows Task Scheduler to upload CW Beacon Spots every 15 minutes to the database.
 
@@ -14,15 +14,29 @@ Grafana is Open Source Software, available as a <b>free</b> [hosted service](htt
 
 ![image](https://user-images.githubusercontent.com/75934980/113480671-db95d600-9495-11eb-97ee-800ca1ad2cf6.png)
 
+Prerequisites
+=============
+- Working [Faros](http://www.dxatlas.com/Faros/) installation
+- Internet connection
+- Admin access to a InfluxDB instance
+
+
 
 Installation
 ============
+
+Download the latest FarFlux Release from the dist folder and start the MSI installer file. Accept the default install path and click on Next. Once the installation is completed click on Finish.
+
+![image](https://user-images.githubusercontent.com/75934980/114466174-65594800-9be8-11eb-9908-767105c5e979.png)
+
+<b>Important</b> : The FarFlux Program has to be started with Admin privileges. Right-click the FarFlux Program and select "Run as administrator"
+
 
 
 
 Configuration
 ==============
-The FarFlux Utility requires the configuration from your InfluxDB in order to write to the database. From "File" select "Settings" to configure FarFlux.
+The FarFlux Software requires the configuration from your InfluxDB in order to write to the database. From "File" select "Settings" to configure FarFlux.
 - InfluxDB URL (e.g. https://eu-central-1-1.aws.cloud2.influxdata.com)
 - OrganizationID (e.g. MyOrg)
 - Bucket (database bucket, e.g. beacon)
@@ -47,7 +61,13 @@ Click on "Schedule Task" to create a windows task scheduler job which uploads th
 
 ![image](https://user-images.githubusercontent.com/75934980/113907126-47997680-97d5-11eb-84e6-0fb8d64c737b.png)
 
-Once the Task has been successfully created you can safely close FarFlux (Exit), no need to keep it running.
+Once the Task has been successfully created you can safely close FarFlux (Exit), no need to keep it running. From now on the CW Beacon spots from Faros will be uploaded to the InfluxDB through the schduled Windows task every 15 minutes. Check the Data Explorer in the InfluxDB web based user interface to confirm that Beacon Spots upload is successful. Once confirmed you can go ahead with Grafana and add the Database as a Data Source to build some nice dashboards.
+
+
+Grafana - adding InfluxDB as a Datasource
+=========================================
+Logon to your InfluxDB user interface and go to Configuration --> Data Sources. Click on "Add data source"
+![image](https://user-images.githubusercontent.com/75934980/114545209-fa495900-9c5b-11eb-9649-805683b0a40d.png)
 
 
 

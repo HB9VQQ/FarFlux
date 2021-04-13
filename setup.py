@@ -8,7 +8,8 @@ base = 'Win32GUI' if sys.platform=='win32' else None
 base_c = 'Console'
 
 executables = [
-    Executable('main.py', base=base, target_name = 'FarFlux', icon='radio_tower.ico'),
+    Executable('main.py', base=base, target_name = 'FarFlux', icon='radio_tower.ico', 
+               shortcut_dir="DesktopFolder", shortcut_name="FarFlux"),
     Executable('upload.py', base=base_c, target_name = 'FarFlux_upload')
 ]
 

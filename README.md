@@ -85,6 +85,6 @@ Example Screenshot (cloud-hosted InfluxDB)
 
 Finally click on "Save & Test" to confirm successful DB connection with your provided credentials. 
 
-If the Test has succeeded you are now ready to build Grafana dashboards. To help ypu get started, I have added a simple Dasboard template to the Github Repository. You import the Template in Grafana and all you need to change is the name of the Database bucket in each panel to reflect your setting.
+If the Test has succeeded you are now ready to build Grafana dashboards. To help you get started, I have added a simple Dasboard Template to the Github Repository. You can import the Template in Grafana and all you need to change is the name of the Database bucket in each panel to reflect your setting.
 
 

@@ -72,6 +72,16 @@ Logon to your Grafana web interface and go to Configuration --> Data Sources. Cl
 Select InfluxDB
 ![image](https://user-images.githubusercontent.com/75934980/114545484-544a1e80-9c5c-11eb-9c58-5dec070b6151.png)
 
+Configure the Settings. Make sure you set it to the default Data Source and fill in
+- URL to your InfluxDB
+- Organization (OrgID from your InfluxDB)
+- Token (Access token from your InfluxDB)
+- Default bucket (data bucket from your InfluxDB)
+
+Example Screenshot (cloud-hosted InfluxDB)
+------------------
+
+
 
 
 

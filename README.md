@@ -1,6 +1,6 @@
 # FarFlux
 
-Project Goal is to facilitate the setup of a global network of [CW Monitor Stations](https://www.ncdxf.org/beacon/index.html) based on modern data storage and analytics technology to study HF Propagation paths for Amateur Radio communication.
+Project Goal is to facilitate the setup of a global network of [CW Beacon Monitor Stations](https://www.ncdxf.org/beacon/index.html) based on modern data storage and analytics technology to study HF Propagation paths for Amateur Radio communication.
 
 FarFlux is a Windows utility which imports CW Beacon Logs from [Faros](http://www.dxatlas.com/Faros/) and uploads the data to an [InfluxDB](https://www.influxdata.com/) for further processing by a observability tool like [Grafana](https://grafana.com/). FarFlux validates the Faros Beacon Logs and uploads only Beacon Spots where evidence >1. The Program can be scheduled to run via the Windows Task Scheduler to upload CW Beacon Spots every 15 minutes to the database.
 

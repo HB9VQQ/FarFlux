@@ -31,7 +31,7 @@ def get_resources():
         r = requests.get(url+fname)
         open(fname, "wb").write(r.content)
 
-def connection_test(url, token, org_id, bucket):
+def connection_test(url, token, org_id, bucket, port):
     '''
     status codes:
     0 --> No host specified
@@ -41,7 +41,8 @@ def connection_test(url, token, org_id, bucket):
     4 --> OrgID & Bucket incorrectly configured
     '''
     client = InfluxDBClient(url=url,
-                            token=token)
+                            token=token,
+                            port=port)
     try:
         organizations = client.organizations_api().find_organizations()
         buckets = client.buckets_api().find_buckets()

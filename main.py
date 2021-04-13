@@ -116,10 +116,12 @@ class Landing(tk.Frame):
             org_id = self.config['ORG_ID']
             bucket = self.config['BUCKET']
             token = self.config['TOKEN']
+            port = self.config['PORT']
             self.db_connection = connection_test(url=url,
                                             org_id=org_id,
                                             bucket=bucket,
-                                            token=token)
+                                            token=token,
+                                            port=port)
         else:
             self.db_connection = (-1, 'Please provide InfluxDB settings:\nFile > Settings')
         return self.db_connection

@@ -71,7 +71,7 @@ def ingest(file):
     return points
 
 def init_db():
-    client = InfluxDBClient(url=URL, token=TOKEN, bucket=BUCKET, org=ORG)
+    client = InfluxDBClient(url=URL, token=TOKEN, bucket=BUCKET, org=ORG, port=PORT)
     return client
 
 def upload(client: InfluxDBClient, points):
@@ -114,6 +114,7 @@ if __name__ == '__main__':
     ORG = config["ORG_ID"]
     BUCKET = config["BUCKET"]
     TOKEN = config["TOKEN"]
+    PORT = config["PORT"]
     points = ingest(LOG_FILE)
     client = init_db()
     upload(client, points)

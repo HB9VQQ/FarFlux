@@ -19,6 +19,7 @@ Prerequisites
 - Working [Faros](http://www.dxatlas.com/Faros/) installation
 - Internet connection
 - Admin access to a InfluxDB instance
+- Admin access to a Grafana instance
 
 
 
@@ -82,6 +83,8 @@ Example Screenshot (cloud-hosted InfluxDB)
 ------------------
 ![image](https://user-images.githubusercontent.com/75934980/114546860-f28ab400-9c5d-11eb-9b2d-5f56a9f4cf53.png)
 
-Finally click on "Save & Test" to confirm successful DB connection with your provided credentials.
+Finally click on "Save & Test" to confirm successful DB connection with your provided credentials. 
+
+If the Test has succeeded you are now ready to build Grafana dashboards. To help ypu get started, I have added a simple Dasboard template to the Github Repository. You import the Template in Grafana and all you need to change is the name of the Database bucket in each panel to reflect your setting.
 
 
